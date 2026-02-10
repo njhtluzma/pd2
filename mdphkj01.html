@@ -1,0 +1,1877 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Permohonan Permit Papan Dendeng (MDPH-KJ01)</title>
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --primary-blue-dark: #1d4ed8;
+            --primary-blue-light: #3b82f6;
+            --dark-bg: #1e293b;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+            --green-500: #10b981;
+            --green-50: #f0fdf4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: var(--gray-900);
+            line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 280px;
+            background: white;
+            border-right: 1px solid var(--gray-200);
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.05);
+        }
+
+        .sidebar-header {
+            padding: 2rem 1.5rem;
+            border-bottom: 1px solid var(--gray-200);
+            background: var(--gray-50);
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary-blue);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .sidebar-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: white;
+        }
+
+        .sidebar-title h1 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 0.25rem;
+        }
+
+        .sidebar-title p {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem 0;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            color: var(--gray-600);
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+            background: transparent;
+            width: 100%;
+            border: none;
+            text-align: left;
+            font-size: 0.9375rem;
+            font-weight: 500;
+        }
+
+        .nav-item:hover {
+            background: var(--gray-50);
+            color: var(--gray-900);
+        }
+
+        .nav-item.active {
+            background: #eff6ff;
+            color: var(--primary-blue);
+            border-left-color: var(--primary-blue);
+        }
+
+        .nav-item svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        .nav-item-content {
+            flex: 1;
+        }
+
+        .nav-item-title {
+            font-weight: 600;
+            margin-bottom: 0.125rem;
+        }
+
+        .nav-item-subtitle {
+            font-size: 0.75rem;
+            color: var(--gray-400);
+        }
+
+        .nav-item.active .nav-item-subtitle {
+            color: var(--primary-blue-light);
+        }
+
+        .sidebar-footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .btn-print {
+            background: var(--dark-bg);
+            color: white;
+            border: none;
+            padding: 0.875rem 1.25rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+            width: 100%;
+        }
+
+        .btn-print:hover {
+            background: var(--gray-900);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .btn-print svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            padding: 2rem;
+            width: calc(100% - 280px);
+        }
+
+        .content-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 20mm;
+            }
+			
+				@media print {
+	  body {
+		transform: scale(0.80);
+		transform-origin: top left;
+		width: 125%;
+		height: 125%;
+	  }
+	  
+	  /* Optional: ensure all content fits within page */
+	  @page {
+		margin: 0.5cm;
+	  }
+	}
+
+
+@media print {
+  body { 
+    zoom: 1.00; /* Adjust this value (0.8, 0.85, 0.9, etc.) */
+    -webkit-transform: scale(0.85);
+    transform: scale(0.85);
+    transform-origin: 0 0;
+    width: 117%;
+    height: 117%;
+  }
+}
+
+
+            body {
+                background-color: white;
+                margin: 0;
+                padding: 0;
+                display: block;
+            }
+
+            .sidebar {
+                display: none !important;
+            }
+
+            .main-content {
+                margin-left: 0 !important;
+                padding: 0 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+
+            .content-wrapper {
+                max-width: 100% !important;
+                margin: 0 !important;
+            }
+
+            .content-section {
+                box-shadow: none !important;
+                border: none !important;
+                margin: 0 !important;
+                padding: 8mm !important;
+                page-break-after: always !important;
+                page-break-inside: avoid !important;
+                min-height: 260mm !important;
+                max-height: 260mm !important;
+            }
+
+            .tab-content {
+                display: block !important;
+                page-break-after: always !important;
+            }
+
+            .tab-content:last-child {
+                page-break-after: auto !important;
+            }
+
+            .footer-navigation {
+                display: none !important;
+            }
+
+            /* Compact print styles */
+            .section-header {
+                margin-bottom: 0.5rem !important;
+            }
+
+            .section-header img {
+                width: 60px !important;
+            }
+
+            .section-title h3 {
+                font-size: 0.7rem !important;
+                margin-bottom: 0.1rem !important;
+            }
+
+            .section-title .subtitle {
+                font-size: 0.55rem !important;
+                line-height: 1.2 !important;
+            }
+
+            .form-number {
+                font-size: 0.7rem !important;
+                padding: 0.25rem 0.5rem !important;
+            }
+
+            .bordered-title {
+                padding: 0.4rem 0.8rem !important;
+                margin: 0.5rem 0 !important;
+                border-width: 2px !important;
+            }
+
+            .bordered-title h4 {
+                font-size: 0.7rem !important;
+                line-height: 1.2 !important;
+            }
+
+            .form-row {
+                margin-bottom: 0.5rem !important;
+                font-size: 0.65rem !important;
+            }
+
+            .form-row label {
+                min-width: 100px !important;
+                font-size: 0.65rem !important;
+            }
+
+            .form-row input,
+            .form-row textarea {
+                padding: 0.25rem 0.4rem !important;
+                font-size: 0.65rem !important;
+                min-height: 20px !important;
+            }
+
+            .form-row textarea {
+                min-height: 50px !important;
+            }
+
+            table {
+                margin: 0.5rem 0 !important;
+                font-size: 0.6rem !important;
+            }
+
+            table th,
+            table td {
+                padding: 0.25rem 0.4rem !important;
+                font-size: 0.6rem !important;
+                line-height: 1.2 !important;
+            }
+
+            table th {
+                font-size: 0.58rem !important;
+            }
+
+            .official-section {
+                padding: 0.6rem !important;
+                margin: 0.5rem 0 !important;
+                font-size: 0.65rem !important;
+            }
+
+            .official-section h4 {
+                font-size: 0.7rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+
+            .numbered-item {
+                margin-bottom: 0.8rem !important;
+            }
+
+            .number-badge {
+                width: 22px !important;
+                height: 22px !important;
+                font-size: 0.7rem !important;
+            }
+
+            .numbered-content h5 {
+                font-size: 0.65rem !important;
+                margin-bottom: 0.3rem !important;
+            }
+
+            .numbered-content textarea,
+            .numbered-content input {
+                font-size: 0.6rem !important;
+                padding: 0.2rem 0 !important;
+                min-height: 25px !important;
+            }
+
+            .payment-summary,
+            .total-section,
+            .applicant-info-box,
+            .note-box {
+                padding: 0.6rem !important;
+                margin: 0.5rem 0 !important;
+                font-size: 0.65rem !important;
+            }
+
+            .payment-header {
+                margin-bottom: 0.8rem !important;
+            }
+
+            .payment-header h3 {
+                font-size: 0.9rem !important;
+                margin-bottom: 0.3rem !important;
+            }
+
+            .payment-header p {
+                font-size: 0.6rem !important;
+            }
+
+            .payment-icon {
+                width: 35px !important;
+                height: 35px !important;
+                margin-bottom: 0.5rem !important;
+            }
+
+            .payment-icon svg {
+                width: 18px !important;
+                height: 18px !important;
+            }
+
+            .payment-summary h4 {
+                font-size: 0.75rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+
+            .payment-item {
+                padding: 0.4rem 0 !important;
+            }
+
+            .payment-item-title {
+                font-size: 0.65rem !important;
+            }
+
+            .payment-item-subtitle {
+                font-size: 0.55rem !important;
+            }
+
+            .payment-item-amount {
+                font-size: 0.75rem !important;
+            }
+
+            .total-row {
+                font-size: 0.9rem !important;
+            }
+
+            .applicant-info-box h4 {
+                font-size: 0.75rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+
+            .info-item {
+                margin-bottom: 0.4rem !important;
+            }
+
+            .info-label {
+                font-size: 0.55rem !important;
+            }
+
+            .info-value {
+                font-size: 0.65rem !important;
+            }
+
+            .success-badge {
+                font-size: 0.6rem !important;
+                padding: 0.3rem 0.6rem !important;
+            }
+
+            .note-box h5 {
+                font-size: 0.65rem !important;
+                margin-bottom: 0.4rem !important;
+            }
+
+            .note-box ul {
+                font-size: 0.6rem !important;
+                line-height: 1.4 !important;
+            }
+
+            .info-note {
+                font-size: 0.6rem !important;
+            }
+
+            p, div {
+                font-size: 0.65rem !important;
+                line-height: 1.3 !important;
+            }
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-header img {
+            width: 120px;
+            height: auto;
+        }
+
+        .section-title {
+            flex: 1;
+        }
+
+        .section-title h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .section-title .subtitle {
+            font-size: 0.9375rem;
+            color: var(--gray-600);
+        }
+
+        .form-number {
+            text-align: right;
+            border: 2px solid var(--gray-900);
+            padding: 0.5rem 1rem;
+            font-weight: 700;
+            font-size: 1.125rem;
+        }
+
+        .bordered-title {
+            border: 3px solid var(--gray-900);
+            padding: 1rem 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            background: var(--gray-100);
+        }
+
+        .bordered-title h4 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1.4;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            align-items: center;
+        }
+
+        .form-row label {
+            font-weight: 600;
+            min-width: 150px;
+        }
+
+        .form-row input[type="text"],
+        .form-row input[type="date"],
+        .form-row input[type="tel"],
+        .form-row input[type="number"],
+        .form-row textarea {
+            flex: 1;
+            padding: 0.625rem 1rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 6px;
+            font-size: 0.9375rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+            transition: all 0.2s;
+        }
+
+        .form-row input:focus,
+        .form-row textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-row textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        table th,
+        table td {
+            border: 1px solid var(--gray-300);
+            padding: 0.75rem 1rem;
+            text-align: left;
+        }
+
+        table th {
+            background: var(--gray-100);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+        }
+
+        table td input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .official-section {
+            border: 2px solid var(--gray-900);
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .official-section h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-note {
+            font-style: italic;
+            color: var(--gray-600);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+
+        .technical-table {
+            margin: 2rem 0;
+        }
+
+        .technical-table th {
+            background: white;
+            font-weight: 700;
+        }
+
+        .footer-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--gray-700);
+            border: 1px solid var(--gray-300);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-50);
+            border-color: var(--gray-400);
+        }
+
+        .btn-primary {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-blue-dark);
+            transform: translateY(-1px);
+        }
+
+        .page-indicator {
+            font-weight: 600;
+            color: var(--gray-400);
+            font-size: 0.9375rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .payment-summary {
+            background: var(--gray-50);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .payment-summary h4 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .payment-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .payment-item:last-child {
+            border-bottom: none;
+        }
+
+        .payment-item-title {
+            font-weight: 500;
+        }
+
+        .payment-item-subtitle {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+            margin-top: 0.25rem;
+        }
+
+        .payment-item-amount {
+            font-weight: 700;
+            font-size: 1.125rem;
+        }
+
+        .total-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+            border: 2px solid var(--gray-200);
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .total-amount {
+            color: var(--primary-blue);
+        }
+
+        .note-box {
+            background: #dbeafe;
+            border-left: 4px solid var(--primary-blue);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .note-box h5 {
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .note-box ul {
+            margin-left: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .applicant-info-box {
+            background: var(--dark-bg);
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .applicant-info-box h4 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .info-item {
+            margin-bottom: 1rem;
+        }
+
+        .info-label {
+            font-size: 0.875rem;
+            color: var(--gray-400);
+            margin-bottom: 0.25rem;
+        }
+
+        .info-value {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .success-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--green-50);
+            color: var(--green-500);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        .success-badge svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .numbered-section {
+            margin: 2rem 0;
+        }
+
+        .numbered-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .number-badge {
+            width: 36px;
+            height: 36px;
+            background: var(--gray-900);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+            font-size: 1.125rem;
+        }
+
+        .numbered-content {
+            flex: 1;
+        }
+
+        .numbered-content h5 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            font-size: 0.9375rem;
+            letter-spacing: 0.01em;
+        }
+
+        .numbered-content textarea,
+        .numbered-content input {
+            width: 100%;
+            margin-top: 0.5rem;
+            font-size: 0.9375rem;
+            color: var(--gray-600);
+            font-weight: 400;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .payment-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--green-50);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .payment-icon svg {
+            width: 40px;
+            height: 40px;
+            stroke: var(--green-500);
+        }
+
+        .payment-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .payment-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .payment-header p {
+            color: var(--gray-600);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid var(--gray-200);
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 1rem;
+            }
+
+            .sidebar-nav {
+                display: flex;
+                overflow-x: auto;
+                padding: 0;
+            }
+
+            .nav-item {
+                flex-direction: column;
+                text-align: center;
+                padding: 1rem;
+                min-width: 120px;
+                border-left: none;
+                border-bottom: 3px solid transparent;
+            }
+
+            .nav-item.active {
+                border-left: none;
+                border-bottom-color: var(--primary-blue);
+            }
+
+            .sidebar-footer {
+                display: none;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .form-row label {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Left Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <div class="sidebar-icon">
+                     <img src="https://lh3.googleusercontent.com/d/1gkq2KUDeSahQT9db8KgIs6HtDotaeao1" 
+                             alt="MDPH Logo"
+                             style="width: 75px; height: auto; object-fit: contain; border: 1px solid #e2e8f0; padding: 8px; border-radius: 8px;">
+                </div>
+                <div class="sidebar-title">
+                    <h1>MDPH-KJ01</h1>
+                    <p>Permit Papan Dendeng</p>
+                </div>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <button class="nav-item active" onclick="switchTab('checklist')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 11l3 3L22 4"/>
+                    <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+                </svg>
+                <div class="nav-item-content">
+                    <div class="nav-item-title">Senarai Semak</div>
+                    <div class="nav-item-subtitle">Helaian 1</div>
+                </div>
+            </button>
+
+            <button class="nav-item" onclick="switchTab('lampiran1')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                    <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+                </svg>
+                <div class="nav-item-content">
+                    <div class="nav-item-title">Lampiran 1</div>
+                    <div class="nav-item-subtitle">Helaian 2</div>
+                </div>
+            </button>
+
+            <button class="nav-item" onclick="switchTab('teknikal')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                    <path d="M3 9h18M9 21V9"/>
+                </svg>
+                <div class="nav-item-content">
+                    <div class="nav-item-title">Teknikal</div>
+                    <div class="nav-item-subtitle">Helaian 3</div>
+                </div>
+            </button>
+
+            <button class="nav-item" onclick="switchTab('maklumat')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+                <div class="nav-item-content">
+                    <div class="nav-item-title">Maklumat</div>
+                    <div class="nav-item-subtitle">Helaian 4</div>
+                </div>
+            </button>
+
+<button class="nav-item" onclick="switchTab('spesifikasi')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+    </svg>
+    <div class="nav-item-content">
+        <div class="nav-item-title">Spesifikasi Papan</div>
+        <div class="nav-item-subtitle">Helaian 5</div>
+    </div>
+</button>
+
+            <button class="nav-item" onclick="switchTab('pembayaran')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="1" y="4" width="22" height="16" rx="2"/>
+                    <path d="M1 10h22"/>
+                </svg>
+                <div class="nav-item-content">
+                    <div class="nav-item-title">Pembayaran</div>
+                    <div class="nav-item-subtitle">Helaian 6</div>
+                </div>
+            </button>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="btn-print" onclick="printAllPages()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 9V2h12v7"/>
+                    <path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/>
+                    <rect x="6" y="14" width="12" height="8"/>
+                </svg>
+                Cetak Semua
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-wrapper">
+            <!-- Tab 1: Senarai Semak / Checklist -->
+            <div id="tab-checklist" class="tab-content active">
+                <div class="content-section">
+                    <div class="section-header">
+                        <img src="https://lh3.googleusercontent.com/d/1gkq2KUDeSahQT9db8KgIs6HtDotaeao1" 
+                             alt="MDPH Logo"
+                             style="width: 120px; height: auto; object-fit: contain; border: 1px solid #e2e8f0; padding: 8px; border-radius: 8px;">
+                        
+                        <div class="section-title">
+                            <h3>JABATAN BANGUNAN</h3>
+                            <div class="subtitle">MAJLIS DAERAH PENGKALAN HULU</div>
+                            <div class="subtitle">WISMA KROH JALAN SRI ADIKA RAJA</div>
+                            <div class="subtitle">33100 PENGKALAN HULU PERAK</div>
+                            <div class="subtitle">TEL : 04-4778148 / FAX : 04-4778735</div>
+                        </div>
+
+                        <div class="form-number">
+                            MDPH-KJ01
+                        </div>
+                    </div>
+                    
+                    <div class="bordered-title">
+                        <h4>BORANG PERMOHONAN PERMIT PAPAN DENDENG (HOARDING)<br>UNTUK KERJA-KERJA PEMBINAAN</h4>
+                    </div>
+
+                    <div class="form-row">
+                        <label>No.Fail :</label>
+                        <input type="text" id="fail-number" value="MDPH / KJ / 13">
+                    </div>
+
+                    <div class="form-row">
+                        <label>Nama Pemohon :</label>
+                        <input type="text" id="pemohon-name" placeholder="Masukkan nama pemohon">
+                    </div>
+
+                    <p style="margin: 2rem 0 1rem; font-style: italic;">Tandakan (√) pada kotak yang berkenaan</p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>DOKUMEN</th>
+                                <th style="width: 120px; text-align: center;">TANDAKAN</th>
+                                <th style="width: 120px; text-align: center;">PEJABAT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1. Surat permohonan pemohon (Format Lampiran 1).</td>
+                                <td style="text-align: center;"><input type="checkbox"></td>
+                                <td style="text-align: center;"><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>2. Borang ( MDPH-KJ01) yang diisi dan ditandatangani oleh pemohon / perunding / kontraktor.</td>
+                                <td style="text-align: center;"><input type="checkbox"></td>
+                                <td style="text-align: center;"><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>3. 1 salinan hakmilik / perjanjian jual beli yang lengkap dengan pelan bangunan.</td>
+                                <td style="text-align: center;"><input type="checkbox"></td>
+                                <td style="text-align: center;"><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>4. 1 salinan kad pengenalan pemohon (hadapan dan belakang dalam 1 helaian yang jelas dan terang).</td>
+                                <td style="text-align: center;"><input type="checkbox"></td>
+                                <td style="text-align: center;"><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>5. Yuran proses RM100.00 - perlu dijelaskan.</td>
+                                <td style="text-align: center;"><input type="checkbox"></td>
+                                <td style="text-align: center;"><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>6. Gambar berwarna bangunan terkini – (jika berkaitan).</td>
+                                <td style="text-align: center;"><input type="checkbox"></td>
+                                <td style="text-align: center;"><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>7. 2 set salinan pelan tapak kedudukan papan dendeng / hoarding di tapak.</td>
+                                <td style="text-align: center;"><input type="checkbox"></td>
+                                <td style="text-align: center;"><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>8. Surat kebenaran/kelulusan daripada pihak Majlis untuk kerja-kerja membina, meroboh, membaiki– (jika berkaitan).</td>
+                                <td style="text-align: center;"><input type="checkbox"></td>
+                                <td style="text-align: center;"><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>9. Lain-lain (nyatakan) ………………………………………………….............................
+                                <br>………………………………………………………….............................
+                                </td>
+                                <td style="text-align: center;"><input type="checkbox"></td>
+                                <td style="text-align: center;"><input type="checkbox"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="official-section">
+                        <h4>UNTUK KEGUNAAN PEJABAT</h4>
+
+                        <div style="display: flex; gap: 1.5rem; align-items: flex-start; font-size: 0.65rem;">
+                            <div style="flex: 1;">
+                                <div style="margin-bottom: 0.8rem;">
+                                    <label style="display: block; font-weight: 600; margin-bottom: 0.3rem; font-size: 0.65rem;">Disemak Oleh:</label>
+                                    <div style="border-bottom: 1px dotted var(--gray-400); padding-bottom: 0.3rem; min-height: 35px;"></div>
+                                </div>
+
+                                <div>
+                                    <label style="display: block; font-weight: 600; margin-bottom: 0.3rem; font-size: 0.65rem;">Tarikh:</label>
+                                    <div style="font-weight: 600; font-size: 0.6rem;">(Cop dan Tandatangan)</div>
+                                </div>
+                            </div>
+
+                            <div style="flex: 1; border: 2px solid var(--gray-900); padding: 0.8rem;">
+                                <div style="margin-bottom: 0.8rem;">
+                                    <div style="font-weight: 700; margin-bottom: 0.5rem; font-size: 0.65rem;">ULASAN : * LENGKAP / TIDAK</div>
+                                    
+                                    <div style="display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.4rem;">
+                                        <input type="checkbox" id="process-fee" style="width: 16px; height: 16px; cursor: pointer;">
+                                        <label for="process-fee" style="cursor: pointer; font-size: 0.6rem;">Sila sediakan bil yuran proses dan pelekat</label>
+                                    </div>
+
+                                    <div style="display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.5rem;">
+                                        <input type="checkbox" id="hoarding-fee" style="width: 16px; height: 16px; cursor: pointer;">
+                                        <label for="hoarding-fee" style="cursor: pointer; font-size: 0.6rem;">Yuran permit hoarding</label>
+                                    </div>
+                                </div>
+
+                                <div style="font-size: 0.6rem;">
+                                    <span style="font-weight: 600;">Bil Yuran : </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="footer-navigation">
+                        <button class="btn-secondary" disabled>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M15 18l-6-6 6-6"/>
+                            </svg>
+                            Kembali
+                        </button>
+                        <div class="page-indicator">HELAIAN 1 / 6</div>
+                        <button class="btn-primary" onclick="switchTab('lampiran1')">
+                            Seterusnya
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 18l6-6-6-6"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 2: Lampiran 1 -->
+            <div id="tab-lampiran1" class="tab-content">
+                <div class="content-section">
+                    <div style="text-align: right; margin-bottom: 2rem;">
+                        <h3 style="font-weight: 700; border: 2px solid black; display: inline-block; padding: 0.5rem 1.5rem;">LAMPIRAN 1</h3>
+                    </div>
+
+                    <div style="border-bottom: 1px dotted var(--gray-900); min-height: 30px; margin-bottom: 0.75rem;"></div>
+                    <div style="border-bottom: 1px dotted var(--gray-900); min-height: 30px; margin-bottom: 0.75rem;"></div>
+                    <div style="border-bottom: 1px dotted var(--gray-900); min-height: 30px; margin-bottom: 1.5rem;"></div>
+
+                    <div class="form-row">
+                        <label>Tarikh :</label>
+                        <input type="date" id="lampiran-date">
+                    </div>
+
+                    <div style="margin: 2rem 0;">
+                        <p style="font-weight: 600; margin-bottom: 0.5rem;">KEPADA:</p>
+                        <p>Jabatan Bangunan</p>
+                        <p>Majlis Daerah Pengkalan Hulu.</p>
+                    </div>
+
+                    <div style="margin: 2rem 0;">
+                        <p style="font-weight: 600;">Tuan,</p>
+                    </div>
+
+                    <h3 style="font-weight: 700; text-decoration: underline; margin: 1.5rem 0;">PERMOHONAN MENDIRIKAN PAPAN DENDENG (HOARDING)</h3>
+
+                    <p style="margin: 1.5rem 0;">Merujuk kepada perkara di atas, saya pemilik rumah/pemohon/kontraktor ingin memohon permit papan dendeng (hoarding) bagi kerja-kerja pembinaan/perobohan bangunan di alamat:</p>
+
+                    <textarea id="lampiran-address" placeholder="Masukkan alamat penuh tapak pembinaan..." style="width: 100%; margin: 1rem 0; min-height: 100px; padding: 1rem; border: 1px solid var(--gray-300); border-radius: 6px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;"></textarea>
+
+                    <p style="margin: 1.5rem 0;">2. Kerjasama tuan amat dihargai dan diharap mendapat permit untuk kerja-kerja tersebut di atas.</p>
+
+                    <p style="margin: 2rem 0 1rem; font-weight: 600;">Sekian, terima kasih.</p>
+
+                    <p style="margin: 2rem 0 1rem; font-weight: 600;">Yang Benar,</p>
+
+                    <div style="margin-top: 3rem; margin-bottom: 2rem;">
+                        <div style="border-top: 2px dashed var(--gray-900); width: 60%; max-width: 300px; margin-bottom: 0.8rem;"></div>
+                        
+                        <div style="display: flex; align-items: center; margin-bottom: 0.6rem; gap: 0.8rem;">
+                            <label style="font-weight: 600; min-width: 80px; font-size: 0.65rem;">Nama:</label>
+                            <input type="text" id="lampiran-nama" style="flex: 1; border: none; border-bottom: 1px solid var(--gray-900); padding: 0.3rem 0; max-width: 400px; background: transparent; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif; font-size: 0.65rem;">
+                        </div>
+
+                        <div style="display: flex; align-items: center; margin-bottom: 0.6rem; gap: 0.8rem;">
+                            <label style="font-weight: 600; min-width: 80px; font-size: 0.65rem;">No. KP:</label>
+                            <input type="text" id="lampiran-kp" style="flex: 1; border: none; border-bottom: 1px solid var(--gray-900); padding: 0.3rem 0; max-width: 400px; background: transparent; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif; font-size: 0.65rem;">
+                        </div>
+
+                        <div style="display: flex; align-items: center; margin-bottom: 0.6rem; gap: 0.8rem;">
+                            <label style="font-weight: 600; min-width: 80px; font-size: 0.65rem;">No. H/P:</label>
+                            <input type="text" id="lampiran-hp" style="flex: 1; border: none; border-bottom: 1px solid var(--gray-900); padding: 0.3rem 0; max-width: 400px; background: transparent; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif; font-size: 0.65rem;">
+                        </div>
+                    </div>
+
+                    <p class="info-note" style="margin-top: 2rem;">(*) Potong yang tidak berkenaan</p>
+
+                    <div class="footer-navigation">
+                        <button class="btn-secondary" onclick="switchTab('checklist')">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M15 18l-6-6 6-6"/>
+                            </svg>
+                            Kembali
+                        </button>
+                        <div class="page-indicator">HELAIAN 2 / 6</div>
+                        <button class="btn-primary" onclick="switchTab('teknikal')">
+                            Seterusnya
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 18l6-6-6-6"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 3: Teknikal -->
+            <div id="tab-teknikal" class="tab-content">
+                <div class="content-section">
+                    <div class="bordered-title">
+                        <h4>BORANG PERMOHONAN PERMIT PAPAN DENDENG<br>UNTUK KERJA-KERJA PEMBINAAN</h4>
+                    </div>
+
+                    <div class="form-row">
+                        <label>1. NAMA KONTRAKTOR :</label>
+                        <input type="text" id="kontraktor-name" placeholder="Masukkan nama kontraktor">
+                    </div>
+
+                    <div class="form-row">
+                        <label>2. ALAMAT :</label>
+                        <textarea id="kontraktor-address" placeholder="Masukkan alamat lengkap"></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <label>3. NO. TELEFON :</label>
+                        <input type="tel" id="kontraktor-phone" placeholder="Masukkan nombor telefon">
+                    </div>
+
+                    <h4 style="font-weight: 700; margin: 2rem 0 1rem; text-transform: uppercase;">4. BANGUNAN-BANGUNAN SEMENTARA YANG AKAN DIBINA:-</h4>
+
+                    <table class="technical-table" style="border: 2px solid var(--gray-900);">
+                        <thead>
+                            <tr>
+                                <th style="border: 2px solid var(--gray-900); background: var(--gray-100); text-align: left; text-transform: uppercase; padding: 1rem;">JENIS</th>
+                                <th style="border: 2px solid var(--gray-900); background: var(--gray-100); text-align: left; text-transform: uppercase; padding: 1rem;">JUMLAH</th>
+                                <th style="border: 2px solid var(--gray-900); background: var(--gray-100); text-align: left; text-transform: uppercase; padding: 1rem;">LUAS</th>
+                                <th style="border: 2px solid var(--gray-900); background: var(--gray-100); text-align: left; text-transform: uppercase; padding: 1rem;">BAHAN</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 2px solid var(--gray-900); padding: 1.5rem; vertical-align: middle;">
+                                    <strong>a) Papan hoarding</strong>
+                                </td>
+                                <td style="border: 2px solid var(--gray-900); padding: 1.5rem; text-align: center; vertical-align: middle;">
+                                    <input type="number" id="hoarding-jumlah" value="" placeholder="" step="1" min="0" style="width: 100%; max-width: 200px; border: 1px solid var(--gray-300); padding: 0.75rem; text-align: center; background: white; border-radius: 4px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;">
+                                </td>
+                                <td style="border: 2px solid var(--gray-900); padding: 1.5rem; vertical-align: middle;">
+                                    <div style="display: flex; align-items: center; gap: 0.5rem; justify-content: center;">
+                                        <input type="number" id="hoarding-luas" value="" placeholder="" step="0.01" min="0" style="width: 100%; max-width: 150px; border: 1px solid var(--gray-300); padding: 0.75rem; text-align: center; background: white; border-radius: 4px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;">
+                                        <strong>m²</strong>
+                                    </div>
+                                </td>
+                                <td style="border: 2px solid var(--gray-900); padding: 1.5rem; vertical-align: middle;">
+                                    <input type="text" id="hoarding-bahan" placeholder="" style="width: 100%; border: 1px solid var(--gray-300); padding: 0.75rem; background: white; border-radius: 4px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 2px solid var(--gray-900); padding: 1.5rem; vertical-align: middle;">
+                                    <strong>b) Papan Tanda</strong>
+                                </td>
+                                <td style="border: 2px solid var(--gray-900); padding: 1.5rem; text-align: center; vertical-align: middle;">
+                                    <input type="number" id="papantanda-jumlah" value="" placeholder="" step="1" min="0" style="width: 100%; max-width: 200px; border: 1px solid var(--gray-300); padding: 0.75rem; text-align: center; background: white; border-radius: 4px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;">
+                                </td>
+                                <td style="border: 2px solid var(--gray-900); padding: 1.5rem; vertical-align: middle;">
+                                    <div style="display: flex; align-items: center; gap: 0.5rem; justify-content: center;">
+                                        <input type="number" id="papantanda-luas" value="" placeholder="" step="0.01" min="0" style="width: 100%; max-width: 150px; border: 1px solid var(--gray-300); padding: 0.75rem; text-align: center; background: white; border-radius: 4px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;">
+                                        <strong>m²</strong>
+                                    </div>
+                                </td>
+                                <td style="border: 2px solid var(--gray-900); padding: 1.5rem; vertical-align: middle;">
+                                    <input type="text" id="papantanda-bahan" placeholder="" style="width: 100%; border: 1px solid var(--gray-300); padding: 0.75rem; background: white; border-radius: 4px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 2px solid var(--gray-900); padding: 1.5rem; vertical-align: middle;">
+                                    <strong>c) Lain-lain</strong>
+                                </td>
+                                <td style="border: 2px solid var(--gray-900); padding: 1.5rem; text-align: center; vertical-align: middle;">
+                                    <input type="number" id="lainlain-jumlah" value="" placeholder="" step="1" min="0" style="width: 100%; max-width: 200px; border: 1px solid var(--gray-300); padding: 0.75rem; text-align: center; background: white; border-radius: 4px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;">
+                                </td>
+                                <td style="border: 2px solid var(--gray-900); padding: 1.5rem; vertical-align: middle;">
+                                    <div style="display: flex; align-items: center; gap: 0.5rem; justify-content: center;">
+                                        <input type="number" id="lainlain-luas" value="" placeholder="" step="0.01" min="0" style="width: 100%; max-width: 150px; border: 1px solid var(--gray-300); padding: 0.75rem; text-align: center; background: white; border-radius: 4px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;">
+                                        <strong>m²</strong>
+                                    </div>
+                                </td>
+                                <td style="border: 2px solid var(--gray-900); padding: 1.5rem; vertical-align: middle;">
+                                    <input type="text" id="lainlain-bahan" placeholder="" style="width: 100%; border: 1px solid var(--gray-300); padding: 0.75rem; background: white; border-radius: 4px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div style="margin: 1.5rem 0; font-size: 0.65rem; line-height: 1.4;">
+                        <p style="margin-bottom: 0.8rem;">
+                            Bersama-sama ini disertakan 2 set pelan kertas (yang diwarnakan merah) - pelan tapak dan bangunan sementara (papan dendeng) bagi kerja-kerja *pembinaan/perobohan/membaiki yang ditandatangani oleh Pemohon/Perunding/Kontraktor menunjukkan letaknya bangunan sementara di atas.
+                        </p>
+                        
+                        <p style="margin-bottom: 0.8rem; font-style: italic; color: var(--gray-600);">
+                            (*) Potong yang tidak berkenaan
+                        </p>
+                        
+                        <div style="margin-top: 1rem; padding: 0.8rem; background: var(--gray-100); border-left: 3px solid var(--gray-700);">
+                            <h5 style="font-weight: 700; margin-bottom: 0.4rem; color: var(--gray-800); font-size: 0.65rem;">PERINGATAN</h5>
+                            <p style="font-size: 0.6rem; line-height: 1.3;">
+                                Kelulusan perlu diperolehi dari Jabatan Bangunan Majlis Daerah Pengkalan Hulu sebelum pembinaan/perobohan dibuat dengan kadar yang dikenakan dan kelulusan diberi dari tahun ketahun.
+                            </p>
+                        </div>
+                    </div>
+
+                    <h4 style="font-weight: 700; margin: 3rem 0 1rem; text-transform: uppercase;">KIRAAN PERMIT:</h4>
+
+                    <table class="technical-table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th style="width: 300px;">Kiraan</th>
+                                <th style="width: 150px; text-align: right;">Jumlah (RM)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="font-weight: 600;">Yuran Proses</td>
+                                <td>Bayaran Tetap</td>
+                                <td style="text-align: right; font-weight: 600;">100.00</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 600;">Papan Hoarding</td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <input type="number" id="hoarding-panjang" value="0" oninput="calculateTotal()" style="width: 80px; border: 1px solid var(--gray-300); padding: 0.5rem; text-align: center; background: white; border-radius: 4px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;">
+                                        <span>meter × RM 6.00</span>
+                                    </div>
+                                </td>
+                                <td style="text-align: right; font-weight: 600;"><span id="hoarding-permit-total">0.00</span></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 600;">Papan Tanda</td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <input type="number" id="papantanda-luas-permit" value="0" oninput="calculateTotal()" style="width: 80px; border: 1px solid var(--gray-300); padding: 0.5rem; text-align: center; background: white; border-radius: 4px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;">
+                                        <span>m²</span>
+                                    </div>
+                                    <div style="font-size: 0.75rem; color: var(--gray-500); margin-top: 0.25rem;">
+                                        RM180/9 m², lebihi: RM18 per m²
+                                    </div>
+                                </td>
+                                <td style="text-align: right; font-weight: 600;"><span id="papantanda-permit-total">0.00</span></td>
+                            </tr>
+                            <tr style="background: var(--gray-100);">
+                                <td colspan="2" style="font-weight: 700; text-transform: uppercase;">JUMLAH KESELURUHAN</td>
+                                <td style="text-align: right; font-weight: 700; font-size: 1.125rem;"><span id="permit-total-keseluruhan">100.00</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="footer-navigation">
+                        <button class="btn-secondary" onclick="switchTab('lampiran1')">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M15 18l-6-6 6-6"/>
+                            </svg>
+                            Kembali
+                        </button>
+                        <div class="page-indicator">HELAIAN 3 / 6</div>
+                        <button class="btn-primary" onclick="switchTab('maklumat')">
+                            Seterusnya
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 18l6-6-6-6"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 4: Maklumat -->
+            <div id="tab-maklumat" class="tab-content">
+                <div class="content-section">
+                    <h3 style="font-weight: 700; text-transform: uppercase; text-align: center; margin-bottom: 1rem; font-size: 1.25rem; border-bottom: 2px solid var(--gray-900); padding-bottom: 1rem;">MAKLUMAT DARI PEMOHON/PERUNDING/KONTRAKTOR</h3>
+
+                    <div class="numbered-section">
+                        <div class="numbered-item">
+                            <div class="number-badge">1</div>
+                            <div class="numbered-content">
+                                <h5>NAMA PEMILIK DAN ALAMAT SURAT MENYURAT</h5>
+                                <textarea 
+                                    id="maklumat-pemilik" 
+                                    placeholder="Tuliskan nama pemilik dan alamat surat menyurat di sini..." 
+                                    style="border: none; border-bottom: 2px solid var(--gray-900); border-radius: 0; padding: 0.5rem 0; margin-top: 1rem; background: transparent; font-weight: 400; color: var(--gray-900); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="numbered-item">
+                            <div class="number-badge">2</div>
+                            <div class="numbered-content">
+                                <h5>TAJUK CADANGAN</h5>
+                                <textarea 
+                                    id="maklumat-tajuk" 
+                                    placeholder="Tuliskan tajuk cadangan projek di sini..." 
+                                    style="border: none; border-bottom: 2px solid var(--gray-900); border-radius: 0; padding: 0.5rem 0; margin-top: 1rem; background: transparent; font-weight: 400; color: var(--gray-900); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="numbered-item">
+                            <div class="number-badge">3</div>
+                            <div class="numbered-content">
+                                <h5>NOMBOR FAIL KELULUSAN – Jika berkaitan</h5>
+                                <input 
+                                    type="text" 
+                                    id="maklumat-fail" 
+                                    placeholder="Cth: MDPH/KJ/123/2024" 
+                                    style="border: none; border-bottom: 2px solid var(--gray-900); border-radius: 0; padding: 0.5rem 0; margin-top: 1rem; background: transparent; width: 100%; font-weight: 400; color: var(--gray-900); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;">
+                            </div>
+                        </div>
+
+                        <div class="numbered-item">
+                            <div class="number-badge">4</div>
+                            <div class="numbered-content">
+                                <h5>NAMA, ALAMAT DAN NO. TELEFON SYARIKAT PEMBINAAN / KONTRAKTOR</h5>
+                                <textarea 
+                                    id="maklumat-syarikat" 
+                                    placeholder="Maklumat lengkap syarikat pembinaan..." 
+                                    style="border: none; border-bottom: 2px solid var(--gray-900); border-radius: 0; padding: 0.5rem 0; margin-top: 1rem; background: transparent; font-weight: 400; color: var(--gray-900); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="numbered-item">
+                            <div class="number-badge">5</div>
+                            <div class="numbered-content">
+                                <h5>NAMA ORANG DARIPADA SYARIKAT PEMBINAAN KONTRAKTOR YANG BOLEH DIHUBUNGI</h5>
+                                <input 
+                                    type="text" 
+                                    id="maklumat-wakil" 
+                                    placeholder="Nama wakil kontraktor..." 
+                                    style="border: none; border-bottom: 2px solid var(--gray-900); border-radius: 0; padding: 0.5rem 0; margin-top: 1rem; background: transparent; width: 100%; font-weight: 400; color: var(--gray-900); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; text-align: right;">
+                        <div style="border-top: 2px dotted var(--gray-400); width: 180px; margin-left: auto; margin-bottom: 0.3rem;"></div>
+                        <p style="font-weight: 700; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.03em;">TANDATANGAN PEMOHON</p>
+                    </div>
+
+                    <div class="footer-navigation">
+                        <button class="btn-secondary" onclick="switchTab('teknikal')">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M15 18l-6-6 6-6"/>
+                            </svg>
+                            Kembali
+                        </button>
+                        <div class="page-indicator">HELAIAN 4 / 6</div>
+                        <button class="btn-primary" onclick="switchTab('pembayaran')">
+                            Seterusnya
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 18l6-6-6-6"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+<!-- Tab 5: Spesifikasi Papan -->
+<div id="tab-spesifikasi" class="tab-content">
+    <div class="content-section">
+        <div class="section-header">
+            <img src="https://lh3.googleusercontent.com/d/1gkq2KUDeSahQT9db8KgIs6HtDotaeao1" 
+                 alt="MDPH Logo"
+                 style="width: 120px; height: auto; object-fit: contain; border: 1px solid #e2e8f0; padding: 8px; border-radius: 8px;">
+            
+            <div class="section-title">
+                <h3>JABATAN BANGUNAN</h3>
+                <div class="subtitle">MAJLIS DAERAH PENGKALAN HULU</div>
+                <div class="subtitle">WISMA KROH JALAN SRI ADIKA RAJA</div>
+                <div class="subtitle">33100 PENGKALAN HULU PERAK</div>
+                <div class="subtitle">TEL : 04-4778148 / FAX : 04-4778735</div>
+            </div>
+
+            <div class="form-number">
+                MDPH-KJ01
+            </div>
+        </div>
+        
+       <div style="width: 100%; height: 550px; border: 2px solid var(--gray-300); border-radius: 8px; overflow: hidden; position: relative;">
+                <iframe 
+                    src="https://drive.google.com/file/d/1eFHOwDk8WsOJXI9vyizs3kVHwul0qCh0/preview" 
+                    width="100%" 
+                    height="100%" 
+                    style="border: none; position: absolute; top: 0; left: 0;"
+                    frameborder="0"
+                    scrolling="no"
+                    title="Spesifikasi Papan Dendeng">
+                </iframe>
+            </div>
+    
+    <p style="text-align: center; margin-top: 0.5rem; font-size: 0.875rem; color: var(--gray-600);">
+        <em>Dokumen PDF: Garis Panduan dan Spesifikasi Papan Dendeng</em>
+    </p>
+</div>
+                   <div style="width: 100%; height: 550px; border: 2px solid var(--gray-300); border-radius: 8px; overflow: hidden; position: relative;">
+                <iframe 
+                    src="https://drive.google.com/file/d/1eFHOwDk8WsOJXI9vyizs3kVHwul0qCh0/preview" 
+                    width="100%" 
+                    height="100%" 
+                    style="border: none; position: absolute; top: 0; left: 0;"
+                    frameborder="0"
+                    scrolling="no"
+                    title="Spesifikasi Papan Dendeng">
+                </iframe>
+            </div>
+
+
+        <div class="footer-navigation">
+            <button class="btn-secondary" onclick="switchTab('maklumat')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+                Kembali
+            </button>
+            <div class="page-indicator">HELAIAN 5 / 6</div>
+            <button class="btn-primary" onclick="switchTab('pembayaran')">
+                Seterusnya
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+
+            <!-- Tab 5: Pembayaran -->
+            <div id="tab-pembayaran" class="tab-content">
+                <div class="content-section">
+                    <div class="payment-header">
+                        <div class="payment-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                                <rect x="1" y="4" width="22" height="16" rx="2"/>
+                                <path d="M1 10h22"/>
+                            </svg>
+                        </div>
+                        <h3>Ringkasan Pembayaran</h3>
+                        <p>Sila semak butiran perkiraan fee permit anda.</p>
+                    </div>
+
+                    <div class="payment-summary">
+                        <h4>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
+                                <path d="M9 11l3 3L22 4"/>
+                            </svg>
+                            Butiran Caj
+                        </h4>
+
+                        <div class="payment-item">
+                            <div>
+                                <div class="payment-item-title">Yuran Proses (Tetap)</div>
+                            </div>
+                            <div class="payment-item-amount">RM 100.00</div>
+                        </div>
+
+                        <div class="payment-item">
+                            <div>
+                                <div class="payment-item-title">Permit Papan Hoarding</div>
+                                <div class="payment-item-subtitle">(<span id="summary-hoarding-meter">0</span> m × RM 6.00)</div>
+                            </div>
+                            <div class="payment-item-amount">RM <span id="summary-hoarding-total">0.00</span></div>
+                        </div>
+
+                        <div class="payment-item">
+                            <div>
+                                <div class="payment-item-title">Permit Papan Tanda</div>
+                                <div class="payment-item-subtitle">Luas: <span id="summary-papantanda-meter">0</span> m² (RM180/9m², tambahan RM18/m²)</div>
+                            </div>
+                            <div class="payment-item-amount">RM <span id="summary-papantanda-total">0.00</span></div>
+                        </div>
+                    </div>
+
+                    <div class="total-section">
+                        <div class="total-row">
+                            <span>JUMLAH KESELURUHAN</span>
+                            <span class="total-amount">RM <span id="grand-total">100.00</span></span>
+                        </div>
+                    </div>
+
+                    <div class="applicant-info-box">
+                        <h4>Butiran Pemohon</h4>
+                        <div class="info-item">
+                            <div class="info-label">Nama Pemohon</div>
+                            <div class="info-value">-</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">No. Kad Pengenalan</div>
+                            <div class="info-value">-</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">No. Telefon</div>
+                            <div class="info-value">-</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">No. Fail Rujukan</div>
+                            <div class="info-value">MDPH / KJ / 13</div>
+                        </div>
+
+                        <div class="success-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 11l3 3L22 4"/>
+                                <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+                            </svg>
+                            Data anda telah disahkan mengikut perkiraan standard MDPH.
+                        </div>
+                    </div>
+
+                    <div class="note-box">
+                        <h5>
+                            <svg viewBox="0 0 24 24" fill="currentColor" style="width: 20px; height: 20px;">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 16v-4M12 8h.01" stroke="white" stroke-width="2" fill="none"/>
+                            </svg>
+                            Nota Penting:
+                        </h5>
+                        <ul>
+                            <li>Pembayaran boleh dibuat secara tunai atau debit di kaunter Jabatan Bangunan.</li>
+                            <li>Sila bawa salinan cetak borang ini semasa membuat pembayaran.</li>
+                            <li>Permit hanya akan dikeluarkan selepas bayaran dijelaskan sepenuhnya.</li>
+                        </ul>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 1rem; padding: 1rem; background: var(--gray-50); border-radius: 12px;">
+                        <p style="font-size: 0.6rem; color: var(--gray-600); margin-bottom: 0; line-height: 1.3;">Dengan menekan butang cetak, anda mengesahkan bahawa maklumat yang diberikan adalah benar dan bersetuju dengan syarat-syarat yang ditetapkan oleh Majlis Daerah Pengkalan Hulu.</p>
+                    </div>
+
+                    <div class="footer-navigation">
+                        <button class="btn-secondary" onclick="switchTab('maklumat')">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M15 18l-6-6 6-6"/>
+                            </svg>
+                            Kembali
+                        </button>
+                        <div class="page-indicator">HELAIAN 6 / 6</div>
+                        <button class="btn-primary" onclick="printAllPages()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 9V2h12v7"/>
+                                <path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/>
+                                <rect x="6" y="14" width="12" height="8"/>
+                            </svg>
+                            Cetak Semua Borang
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+	
+        function printAllPages() {
+            const allTabs = document.querySelectorAll('.tab-content');
+            allTabs.forEach(tab => {
+                tab.style.display = 'block';
+            });
+            
+            window.print();
+            
+            setTimeout(() => {
+                allTabs.forEach(tab => {
+                    if (!tab.classList.contains('active')) {
+                        tab.style.display = 'none';
+                    }
+                });
+            }, 1000);
+        }
+
+        function switchTab(tabName) {
+            const allTabs = document.querySelectorAll('.tab-content');
+            allTabs.forEach(tab => {
+                tab.classList.remove('active');
+                tab.style.display = 'none';
+            });
+
+            const allNavItems = document.querySelectorAll('.nav-item');
+            allNavItems.forEach(item => item.classList.remove('active'));
+
+            const selectedTab = document.getElementById('tab-' + tabName);
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+                selectedTab.style.display = 'block';
+            }
+
+            const tabMap = {
+                'checklist': 0,
+                'lampiran1': 1,
+                'teknikal': 2,
+                'maklumat': 3,
+                'pembayaran': 4
+            };
+            
+            const index = tabMap[tabName];
+            if (index !== undefined && allNavItems[index]) {
+                allNavItems[index].classList.add('active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function calculateTotal() {
+            const hoardingPanjang = parseFloat(document.getElementById('hoarding-panjang').value) || 0;
+            const papantandaLuas = parseFloat(document.getElementById('papantanda-luas-permit').value) || 0;
+            
+            const hoardingRate = 6.00;
+            const hoardingTotal = hoardingPanjang * hoardingRate;
+            
+            let papantandaTotal = 0.00;
+            if (papantandaLuas > 0) {
+                if (papantandaLuas <= 9) {
+                    papantandaTotal = 180.00;
+                } else {
+                    const additionalArea = papantandaLuas - 9;
+                    papantandaTotal = 180.00 + (additionalArea * 18.00);
+                }
+            }
+            
+            document.getElementById('hoarding-permit-total').textContent = hoardingTotal.toFixed(2);
+            document.getElementById('papantanda-permit-total').textContent = papantandaTotal.toFixed(2);
+            
+            const yuranProses = 100.00;
+            const totalKeseluruhan = yuranProses + hoardingTotal + papantandaTotal;
+            document.getElementById('permit-total-keseluruhan').textContent = totalKeseluruhan.toFixed(2);
+            
+            document.getElementById('summary-hoarding-meter').textContent = hoardingPanjang.toFixed(2);
+            document.getElementById('summary-hoarding-total').textContent = hoardingTotal.toFixed(2);
+            document.getElementById('summary-papantanda-meter').textContent = papantandaLuas.toFixed(2);
+            document.getElementById('summary-papantanda-total').textContent = papantandaTotal.toFixed(2);
+            
+            const grandTotal = yuranProses + hoardingTotal + papantandaTotal;
+            document.getElementById('grand-total').textContent = grandTotal.toFixed(2);
+            
+            const pemohonName = document.getElementById('pemohon-name').value;
+            const lampiranKP = document.getElementById('lampiran-kp').value;
+            const lampiranHP = document.getElementById('lampiran-hp').value;
+            
+            if (pemohonName) {
+                const infoValues = document.querySelectorAll('.info-value');
+                if (infoValues[0]) infoValues[0].textContent = pemohonName;
+                if (infoValues[1] && lampiranKP) infoValues[1].textContent = lampiranKP;
+                if (infoValues[2] && lampiranHP) infoValues[2].textContent = lampiranHP;
+            }
+        }
+
+        function updateApplicantInfo() {
+            const pemohonName = document.getElementById('pemohon-name').value;
+            const lampiranNama = document.getElementById('lampiran-nama').value;
+            const lampiranKP = document.getElementById('lampiran-kp').value;
+            const lampiranHP = document.getElementById('lampiran-hp').value;
+            
+            const infoValues = document.querySelectorAll('.info-value');
+            if (infoValues[0]) infoValues[0].textContent = pemohonName || lampiranNama || '-';
+            if (infoValues[1]) infoValues[1].textContent = lampiranKP || '-';
+            if (infoValues[2]) infoValues[2].textContent = lampiranHP || '-';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            calculateTotal();
+            
+            const nameFields = ['pemohon-name', 'lampiran-nama', 'lampiran-kp', 'lampiran-hp'];
+            nameFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (field) {
+                    field.addEventListener('input', updateApplicantInfo);
+                }
+            });
+            
+            const calculationFields = ['hoarding-panjang', 'papantanda-luas-permit'];
+            calculationFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (field) {
+                    field.addEventListener('input', calculateTotal);
+                }
+            });
+            
+            const today = new Date().toISOString().split('T')[0];
+            const dateField = document.getElementById('lampiran-date');
+            if (dateField && !dateField.value) {
+                dateField.value = today;
+            }
+        });
+    </script>
+</body>
+</html>
