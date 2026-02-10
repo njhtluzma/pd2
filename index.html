@@ -1500,16 +1500,17 @@
                             </div>
                         </div>
 
-                        <div class="numbered-item">
-                            <div class="number-badge">4</div>
-                            <div class="numbered-content">
-                                <h5>NAMA, ALAMAT DAN NO. TELEFON SYARIKAT PEMBINAAN / KONTRAKTOR</h5>
-                                <textarea 
-                                    id="maklumat-syarikat" 
-                                    placeholder="Maklumat lengkap syarikat pembinaan..." 
-                                    style="border: none; border-bottom: 2px solid var(--gray-900); border-radius: 0; padding: 0.5rem 0; margin-top: 1rem; background: transparent; font-weight: 400; color: var(--gray-900); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;"></textarea>
-                            </div>
-                        </div>
+				<div class="numbered-item">
+				<div class="number-badge">4</div>
+				<div class="numbered-content">
+					<h5>NAMA, ALAMAT DAN NO. TELEFON SYARIKAT PEMBINAAN / KONTRAKTOR</h5>
+					<textarea 
+						id="maklumat-syarikat" 
+						placeholder="Nama:&#10;&#10;Alamat:&#10;&#10;No. Telefon:&#10;&#10;" 
+						rows="10"
+						style="border: 2px solid var(--gray-300); border-radius: 6px; padding: 1rem; margin-top: 1rem; background: white; font-weight: 400; color: var(--gray-900); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif; min-height: 250px; resize: vertical;"></textarea>
+				</div>
+			</div>
 
                         <div class="numbered-item">
                             <div class="number-badge">5</div>
@@ -1587,7 +1588,8 @@
         <em>Dokumen PDF: Garis Panduan dan Spesifikasi Papan Dendeng</em>
     </p>
 </div>
-                
+     
+
         <div class="footer-navigation">
             <button class="btn-secondary" onclick="switchTab('maklumat')">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1763,13 +1765,14 @@
                 selectedTab.style.display = 'block';
             }
 
-            const tabMap = {
-                'checklist': 0,
-                'lampiran1': 1,
-                'teknikal': 2,
-                'maklumat': 3,
-                'pembayaran': 4
-            };
+				const tabMap = {
+		'checklist': 0,
+		'lampiran1': 1,
+		'teknikal': 2,
+		'maklumat': 3,
+		'spesifikasi': 4,  // Add this line
+		'pembayaran': 5     // Change from 4 to 5
+	        };
             
             const index = tabMap[tabName];
             if (index !== undefined && allNavItems[index]) {
@@ -1862,5 +1865,4 @@
         });
     </script>
 </body>
-
 </html>
