@@ -204,35 +204,13 @@
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 20mm;
+                margin: 0;
             }
-			
-				@media print {
-	  body {
-		transform: scale(0.80);
-		transform-origin: top left;
-		width: 125%;
-		height: 125%;
-	  }
-	  
-	  /* Optional: ensure all content fits within page */
-	  @page {
-		margin: 0.5cm;
-	  }
-	}
 
-
-@media print {
-  body { 
-    zoom: 1.00; /* Adjust this value (0.8, 0.85, 0.9, etc.) */
-    -webkit-transform: scale(0.85);
-    transform: scale(0.85);
-    transform-origin: 0 0;
-    width: 117%;
-    height: 117%;
-  }
-}
-
+            html, body {
+                margin: 0 !important;
+                padding: 0 !important;
+            }
 
             body {
                 background-color: white;
@@ -260,17 +238,19 @@
             .content-section {
                 box-shadow: none !important;
                 border: none !important;
-                margin: 0 !important;
-                padding: 8mm !important;
+                margin: 0.5cm 0.5cm !important;
+                padding: 8mm 8mm !important;
                 page-break-after: always !important;
+                page-break-before: auto !important;
                 page-break-inside: avoid !important;
-                min-height: 260mm !important;
-                max-height: 260mm !important;
+                width: calc(100% - 1cm) !important;
+                box-sizing: border-box !important;
             }
 
             .tab-content {
                 display: block !important;
                 page-break-after: always !important;
+                page-break-before: auto !important;
             }
 
             .tab-content:last-child {
@@ -283,206 +263,246 @@
 
             /* Compact print styles */
             .section-header {
-                margin-bottom: 0.5rem !important;
+                margin-bottom: 1rem !important;
             }
 
             .section-header img {
-                width: 60px !important;
+                width: 80px !important;
             }
 
             .section-title h3 {
-                font-size: 0.7rem !important;
-                margin-bottom: 0.1rem !important;
+                font-size: 0.9rem !important;
+                margin-bottom: 0.2rem !important;
             }
 
             .section-title .subtitle {
-                font-size: 0.55rem !important;
-                line-height: 1.2 !important;
+                font-size: 0.75rem !important;
+                line-height: 1.3 !important;
             }
 
             .form-number {
-                font-size: 0.7rem !important;
-                padding: 0.25rem 0.5rem !important;
+                font-size: 0.9rem !important;
+                padding: 0.4rem 0.8rem !important;
             }
 
             .bordered-title {
-                padding: 0.4rem 0.8rem !important;
-                margin: 0.5rem 0 !important;
+                padding: 0.8rem 1.2rem !important;
+                margin: 1rem 0 !important;
                 border-width: 2px !important;
             }
 
             .bordered-title h4 {
-                font-size: 0.7rem !important;
-                line-height: 1.2 !important;
+                font-size: 0.9rem !important;
+                line-height: 1.3 !important;
             }
 
             .form-row {
-                margin-bottom: 0.5rem !important;
-                font-size: 0.65rem !important;
+                margin-bottom: 0.8rem !important;
+                font-size: 0.85rem !important;
             }
 
             .form-row label {
-                min-width: 100px !important;
-                font-size: 0.65rem !important;
+                min-width: 120px !important;
+                font-size: 0.85rem !important;
             }
 
             .form-row input,
             .form-row textarea {
-                padding: 0.25rem 0.4rem !important;
-                font-size: 0.65rem !important;
-                min-height: 20px !important;
+                padding: 0.4rem 0.6rem !important;
+                font-size: 0.85rem !important;
+                min-height: 28px !important;
             }
 
             .form-row textarea {
-                min-height: 50px !important;
+                min-height: 80px !important;
             }
 
             table {
-                margin: 0.5rem 0 !important;
-                font-size: 0.6rem !important;
+                margin: 1rem 0 !important;
+                font-size: 0.8rem !important;
             }
 
             table th,
             table td {
-                padding: 0.25rem 0.4rem !important;
-                font-size: 0.6rem !important;
-                line-height: 1.2 !important;
+                padding: 0.4rem 0.6rem !important;
+                font-size: 0.8rem !important;
+                line-height: 1.3 !important;
             }
 
             table th {
-                font-size: 0.58rem !important;
+                font-size: 0.75rem !important;
             }
 
             .official-section {
-                padding: 0.6rem !important;
-                margin: 0.5rem 0 !important;
-                font-size: 0.65rem !important;
+                padding: 1rem !important;
+                margin: 1rem 0 !important;
+                font-size: 0.85rem !important;
             }
 
             .official-section h4 {
-                font-size: 0.7rem !important;
-                margin-bottom: 0.5rem !important;
-            }
-
-            .numbered-item {
+                font-size: 0.9rem !important;
                 margin-bottom: 0.8rem !important;
             }
 
+            .numbered-item {
+                margin-bottom: 1.2rem !important;
+            }
+
+            #tab-maklumat .numbered-item {
+                margin-bottom: 0.8rem !important;
+            }
+
+            #tab-maklumat h3 {
+                margin-bottom: 0.8rem !important;
+                padding-bottom: 0.5rem !important;
+                font-size: 0.95rem !important;
+            }
+
+            #tab-maklumat .numbered-section {
+                margin: 0.5rem 0 !important;
+            }
+
+            #tab-teknikal .bordered-title {
+                margin: 0.8rem 0 !important;
+                padding: 0.6rem 1rem !important;
+            }
+
+            #tab-teknikal h4 {
+                margin: 1.5rem 0 0.8rem !important;
+            }
+
+            #tab-teknikal .technical-table {
+                margin: 1rem 0 !important;
+            }
+
+            #tab-teknikal .technical-table td,
+            #tab-teknikal .technical-table th {
+                padding: 0.5rem 0.6rem !important;
+            }
+
+            #tab-teknikal .form-row {
+                margin-bottom: 0.8rem !important;
+            }
+
+            .payment-method-section {
+                display: none !important;
+            }
+
             .number-badge {
-                width: 22px !important;
-                height: 22px !important;
-                font-size: 0.7rem !important;
+                width: 28px !important;
+                height: 28px !important;
+                font-size: 0.9rem !important;
             }
 
             .numbered-content h5 {
-                font-size: 0.65rem !important;
-                margin-bottom: 0.3rem !important;
+                font-size: 0.85rem !important;
+                margin-bottom: 0.5rem !important;
             }
 
             .numbered-content textarea,
             .numbered-content input {
-                font-size: 0.6rem !important;
-                padding: 0.2rem 0 !important;
-                min-height: 25px !important;
+                font-size: 0.8rem !important;
+                padding: 0.3rem 0 !important;
+                min-height: 35px !important;
             }
 
             .payment-summary,
             .total-section,
             .applicant-info-box,
             .note-box {
-                padding: 0.6rem !important;
-                margin: 0.5rem 0 !important;
-                font-size: 0.65rem !important;
+                padding: 1rem !important;
+                margin: 1rem 0 !important;
+                font-size: 0.85rem !important;
             }
 
             .payment-header {
-                margin-bottom: 0.8rem !important;
+                margin-bottom: 1.2rem !important;
             }
 
             .payment-header h3 {
-                font-size: 0.9rem !important;
-                margin-bottom: 0.3rem !important;
+                font-size: 1.1rem !important;
+                margin-bottom: 0.5rem !important;
             }
 
             .payment-header p {
-                font-size: 0.6rem !important;
+                font-size: 0.8rem !important;
             }
 
             .payment-icon {
-                width: 35px !important;
-                height: 35px !important;
-                margin-bottom: 0.5rem !important;
+                width: 50px !important;
+                height: 50px !important;
+                margin-bottom: 0.8rem !important;
             }
 
             .payment-icon svg {
-                width: 18px !important;
-                height: 18px !important;
+                width: 24px !important;
+                height: 24px !important;
             }
 
             .payment-summary h4 {
-                font-size: 0.75rem !important;
-                margin-bottom: 0.5rem !important;
+                font-size: 0.95rem !important;
+                margin-bottom: 0.8rem !important;
             }
 
             .payment-item {
-                padding: 0.4rem 0 !important;
+                padding: 0.6rem 0 !important;
             }
 
             .payment-item-title {
-                font-size: 0.65rem !important;
+                font-size: 0.85rem !important;
             }
 
             .payment-item-subtitle {
-                font-size: 0.55rem !important;
+                font-size: 0.75rem !important;
             }
 
             .payment-item-amount {
-                font-size: 0.75rem !important;
+                font-size: 0.95rem !important;
             }
 
             .total-row {
-                font-size: 0.9rem !important;
+                font-size: 1.1rem !important;
             }
 
             .applicant-info-box h4 {
-                font-size: 0.75rem !important;
-                margin-bottom: 0.5rem !important;
+                font-size: 0.95rem !important;
+                margin-bottom: 0.8rem !important;
             }
 
             .info-item {
-                margin-bottom: 0.4rem !important;
+                margin-bottom: 0.6rem !important;
             }
 
             .info-label {
-                font-size: 0.55rem !important;
+                font-size: 0.75rem !important;
             }
 
             .info-value {
-                font-size: 0.65rem !important;
+                font-size: 0.85rem !important;
             }
 
             .success-badge {
-                font-size: 0.6rem !important;
-                padding: 0.3rem 0.6rem !important;
+                font-size: 0.8rem !important;
+                padding: 0.5rem 0.8rem !important;
             }
 
             .note-box h5 {
-                font-size: 0.65rem !important;
-                margin-bottom: 0.4rem !important;
+                font-size: 0.85rem !important;
+                margin-bottom: 0.6rem !important;
             }
 
             .note-box ul {
-                font-size: 0.6rem !important;
-                line-height: 1.4 !important;
+                font-size: 0.8rem !important;
+                line-height: 1.5 !important;
             }
 
             .info-note {
-                font-size: 0.6rem !important;
+                font-size: 0.8rem !important;
             }
 
             p, div {
-                font-size: 0.65rem !important;
-                line-height: 1.3 !important;
+                font-size: 0.85rem !important;
+                line-height: 1.4 !important;
             }
         }
 
@@ -546,15 +566,14 @@
         }
 
         .form-row {
-            display: flex;
-            gap: 2rem;
+            display: block;
             margin-bottom: 1.5rem;
-            align-items: center;
         }
 
         .form-row label {
             font-weight: 600;
-            min-width: 150px;
+            display: block;
+            margin-bottom: 0.5rem;
         }
 
         .form-row input[type="text"],
@@ -562,13 +581,14 @@
         .form-row input[type="tel"],
         .form-row input[type="number"],
         .form-row textarea {
-            flex: 1;
+            width: 100%;
             padding: 0.625rem 1rem;
             border: 1px solid var(--gray-300);
             border-radius: 6px;
             font-size: 0.9375rem;
             font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
             transition: all 0.2s;
+            box-sizing: border-box;
         }
 
         .form-row input:focus,
@@ -827,13 +847,13 @@
         }
 
         .numbered-section {
-            margin: 2rem 0;
+            margin: 1.5rem 0;
         }
 
         .numbered-item {
             display: flex;
             gap: 1rem;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
 
         .number-badge {
@@ -1221,9 +1241,9 @@
                         <h3 style="font-weight: 700; border: 2px solid black; display: inline-block; padding: 0.5rem 1.5rem;">LAMPIRAN 1</h3>
                     </div>
 
-                    <div style="border-bottom: 1px dotted var(--gray-900); min-height: 30px; margin-bottom: 0.75rem;"></div>
-                    <div style="border-bottom: 1px dotted var(--gray-900); min-height: 30px; margin-bottom: 0.75rem;"></div>
-                    <div style="border-bottom: 1px dotted var(--gray-900); min-height: 30px; margin-bottom: 1.5rem;"></div>
+                    <div style="border-bottom: 1px dotted var(--gray-900); min-height: 30px; margin-bottom: 0.75rem; width: 60%;"></div>
+                    <div style="border-bottom: 1px dotted var(--gray-900); min-height: 30px; margin-bottom: 0.75rem; width: 60%;"></div>
+                    <div style="border-bottom: 1px dotted var(--gray-900); min-height: 30px; margin-bottom: 1.5rem; width: 60%;"></div>
 
                     <div class="form-row">
                         <label>Tarikh :</label>
@@ -1313,7 +1333,7 @@
                         <input type="tel" id="kontraktor-phone" placeholder="Masukkan nombor telefon">
                     </div>
 
-                    <h4 style="font-weight: 700; margin: 2rem 0 1rem; text-transform: uppercase;">4. BANGUNAN-BANGUNAN SEMENTARA YANG AKAN DIBINA:-</h4>
+                    <h4 style="font-weight: 700; margin: 1.5rem 0 0.8rem; text-transform: uppercase;">4. BANGUNAN-BANGUNAN SEMENTARA YANG AKAN DIBINA:-</h4>
 
                     <table class="technical-table" style="border: 2px solid var(--gray-900);">
                         <thead>
@@ -1379,24 +1399,24 @@
                         </tbody>
                     </table>
 
-                    <div style="margin: 1.5rem 0; font-size: 0.65rem; line-height: 1.4;">
-                        <p style="margin-bottom: 0.8rem;">
+                    <div style="margin: 1rem 0; font-size: 0.65rem; line-height: 1.3;">
+                        <p style="margin-bottom: 0.5rem;">
                             Bersama-sama ini disertakan 2 set pelan kertas (yang diwarnakan merah) - pelan tapak dan bangunan sementara (papan dendeng) bagi kerja-kerja *pembinaan/perobohan/membaiki yang ditandatangani oleh Pemohon/Perunding/Kontraktor menunjukkan letaknya bangunan sementara di atas.
                         </p>
                         
-                        <p style="margin-bottom: 0.8rem; font-style: italic; color: var(--gray-600);">
+                        <p style="margin-bottom: 0.5rem; font-style: italic; color: var(--gray-600);">
                             (*) Potong yang tidak berkenaan
                         </p>
                         
-                        <div style="margin-top: 1rem; padding: 0.8rem; background: var(--gray-100); border-left: 3px solid var(--gray-700);">
-                            <h5 style="font-weight: 700; margin-bottom: 0.4rem; color: var(--gray-800); font-size: 0.65rem;">PERINGATAN</h5>
+                        <div style="margin-top: 0.5rem; padding: 0.6rem; background: var(--gray-100); border-left: 3px solid var(--gray-700);">
+                            <h5 style="font-weight: 700; margin-bottom: 0.3rem; color: var(--gray-800); font-size: 0.65rem;">PERINGATAN</h5>
                             <p style="font-size: 0.6rem; line-height: 1.3;">
                                 Kelulusan perlu diperolehi dari Jabatan Bangunan Majlis Daerah Pengkalan Hulu sebelum pembinaan/perobohan dibuat dengan kadar yang dikenakan dan kelulusan diberi dari tahun ketahun.
                             </p>
                         </div>
                     </div>
 
-                    <h4 style="font-weight: 700; margin: 3rem 0 1rem; text-transform: uppercase;">KIRAAN PERMIT:</h4>
+                    <h4 style="font-weight: 700; margin: 1.5rem 0 1rem; text-transform: uppercase;">KIRAAN PERMIT:</h4>
 
                     <table class="technical-table">
                         <thead>
@@ -1507,8 +1527,8 @@
 					<textarea 
 						id="maklumat-syarikat" 
 						placeholder="Nama:&#10;&#10;Alamat:&#10;&#10;No. Telefon:&#10;&#10;" 
-						rows="10"
-						style="border: 2px solid var(--gray-300); border-radius: 6px; padding: 1rem; margin-top: 1rem; background: white; font-weight: 400; color: var(--gray-900); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif; min-height: 250px; resize: vertical;"></textarea>
+						rows="6"
+						style="border: 2px solid var(--gray-300); border-radius: 6px; padding: 0.8rem; margin-top: 0.5rem; background: white; font-weight: 400; color: var(--gray-900); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif; min-height: 120px; resize: vertical;"></textarea>
 				</div>
 			</div>
 
@@ -1525,7 +1545,7 @@
                         </div>
                     </div>
 
-                    <div style="margin-top: 2rem; text-align: right;">
+                    <div style="margin-top: 1rem; text-align: right;">
                         <div style="border-top: 2px dotted var(--gray-400); width: 180px; margin-left: auto; margin-bottom: 0.3rem;"></div>
                         <p style="font-weight: 700; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.03em;">TANDATANGAN PEMOHON</p>
                     </div>
@@ -1538,7 +1558,7 @@
                             Kembali
                         </button>
                         <div class="page-indicator">HELAIAN 4 / 6</div>
-                        <button class="btn-primary" onclick="switchTab('pembayaran')">
+                        <button class="btn-primary" onclick="switchTab('spesifikasi')">
                             Seterusnya
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M9 18l6-6-6-6"/>
@@ -1608,7 +1628,7 @@
     </div>
 </div>
 
-            <!-- Tab 5: Pembayaran -->
+            <!-- Tab 6: Pembayaran -->
             <div id="tab-pembayaran" class="tab-content">
                 <div class="content-section">
                     <div class="payment-header">
@@ -1661,6 +1681,63 @@
                         </div>
                     </div>
 
+                    <div class="payment-method-section" style="margin: 2rem 0;">
+                        <h3 style="font-weight: 700; text-align: center; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.05em;">PILIH KAEDAH PEMBAYARAN</h3>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                            <!-- Atas Talian Option -->
+                            <div class="payment-method-card" onclick="selectPaymentMethod('online')" id="payment-online" style="border: 2px solid var(--gray-300); border-radius: 12px; padding: 1.5rem; cursor: pointer; transition: all 0.2s; background: white;">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div style="width: 60px; height: 60px; background: var(--gray-100); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 32px; height: 32px;">
+                                            <circle cx="12" cy="12" r="10"/>
+                                            <path d="M2 12h20"/>
+                                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 style="font-weight: 700; margin-bottom: 0.25rem; font-size: 1.125rem;">Atas Talian</h4>
+                                        <p style="color: var(--gray-600); font-size: 0.875rem; margin: 0;">Pay bills</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Di Kaunter Option -->
+                            <div class="payment-method-card" onclick="selectPaymentMethod('counter')" id="payment-counter" style="border: 2px solid var(--gray-300); border-radius: 12px; padding: 1.5rem; cursor: pointer; transition: all 0.2s; background: white;">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div style="width: 60px; height: 60px; background: var(--gray-100); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 32px; height: 32px;">
+                                            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                                            <polyline points="9 22 9 12 15 12 15 22"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 style="font-weight: 700; margin-bottom: 0.25rem; font-size: 1.125rem;">Di Kaunter</h4>
+                                        <p style="color: var(--gray-600); font-size: 0.875rem; margin: 0;">Cetak & bawa borang ke pejabat MDPH</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Print Button (shown when counter is selected) -->
+                        <button id="print-payment-btn" onclick="printAllPages()" style="display: none; width: 100%; background: var(--dark-bg); color: white; border: none; padding: 1rem 1.5rem; border-radius: 10px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.05em;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;">
+                                <path d="M6 9V2h12v7"/>
+                                <path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/>
+                                <rect x="6" y="14" width="12" height="8"/>
+                            </svg>
+                            CETAK SEMUA BORANG PEMBAYARAN
+                        </button>
+
+                        <!-- Pay Now Button (shown when online is selected) -->
+                        <button id="pay-now-btn" onclick="window.open('https://www.maybank2u.com.my/home/m2u/common/login.do', '_blank')" style="display: none; width: 100%; background: var(--primary-blue); color: white; border: none; padding: 1rem 1.5rem; border-radius: 10px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.05em;">
+                            BAYAR SEKARANG (RM <span id="pay-now-total">100.00</span>)
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-left: 0.5rem;">
+                                <path d="M9 18l6-6-6-6"/>
+                            </svg>
+                        </button>
+                    </div>
+
                     <div class="applicant-info-box">
                         <h4>Butiran Pemohon</h4>
                         <div class="info-item">
@@ -1701,15 +1778,16 @@
                             <li>Pembayaran boleh dibuat secara tunai atau debit di kaunter Jabatan Bangunan.</li>
                             <li>Sila bawa salinan cetak borang ini semasa membuat pembayaran.</li>
                             <li>Permit hanya akan dikeluarkan selepas bayaran dijelaskan sepenuhnya.</li>
+                            <li>Permohonan akan diproses dalam tempoh 7 hingga 14 hari.</li>
                         </ul>
                     </div>
 
                     <div style="text-align: center; margin-top: 1rem; padding: 1rem; background: var(--gray-50); border-radius: 12px;">
-                        <p style="font-size: 0.6rem; color: var(--gray-600); margin-bottom: 0; line-height: 1.3;">Dengan menekan butang cetak, anda mengesahkan bahawa maklumat yang diberikan adalah benar dan bersetuju dengan syarat-syarat yang ditetapkan oleh Majlis Daerah Pengkalan Hulu.</p>
+                        <p style="font-size: 0.875rem; color: var(--gray-600); margin-bottom: 0; line-height: 1.5;">Dengan menekan butang cetak, anda mengesahkan bahawa maklumat yang diberikan adalah benar dan bersetuju dengan syarat-syarat yang ditetapkan oleh Majlis Daerah Pengkalan Hulu.</p>
                     </div>
 
                     <div class="footer-navigation">
-                        <button class="btn-secondary" onclick="switchTab('maklumat')">
+                        <button class="btn-secondary" onclick="switchTab('spesifikasi')">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M15 18l-6-6 6-6"/>
                             </svg>
@@ -1732,6 +1810,29 @@
 
     <script>
 	
+        function selectPaymentMethod(method) {
+            // Reset all cards
+            document.getElementById('payment-online').style.border = '2px solid var(--gray-300)';
+            document.getElementById('payment-online').style.background = 'white';
+            document.getElementById('payment-counter').style.border = '2px solid var(--gray-300)';
+            document.getElementById('payment-counter').style.background = 'white';
+            
+            // Hide both buttons
+            document.getElementById('print-payment-btn').style.display = 'none';
+            document.getElementById('pay-now-btn').style.display = 'none';
+            
+            // Highlight selected and show appropriate button
+            if (method === 'online') {
+                document.getElementById('payment-online').style.border = '3px solid var(--primary-blue)';
+                document.getElementById('payment-online').style.background = '#eff6ff';
+                document.getElementById('pay-now-btn').style.display = 'block';
+            } else if (method === 'counter') {
+                document.getElementById('payment-counter').style.border = '3px solid var(--dark-bg)';
+                document.getElementById('payment-counter').style.background = 'var(--gray-50)';
+                document.getElementById('print-payment-btn').style.display = 'block';
+            }
+        }
+
         function printAllPages() {
             const allTabs = document.querySelectorAll('.tab-content');
             allTabs.forEach(tab => {
@@ -1770,8 +1871,8 @@
 		'lampiran1': 1,
 		'teknikal': 2,
 		'maklumat': 3,
-		'spesifikasi': 4,  // Add this line
-		'pembayaran': 5     // Change from 4 to 5
+		'spesifikasi': 4,
+		'pembayaran': 5
 	        };
             
             const index = tabMap[tabName];
@@ -1813,6 +1914,7 @@
             
             const grandTotal = yuranProses + hoardingTotal + papantandaTotal;
             document.getElementById('grand-total').textContent = grandTotal.toFixed(2);
+            document.getElementById('pay-now-total').textContent = grandTotal.toFixed(2);
             
             const pemohonName = document.getElementById('pemohon-name').value;
             const lampiranKP = document.getElementById('lampiran-kp').value;
