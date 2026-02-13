@@ -993,8 +993,8 @@
                              style="width: 75px; height: auto; object-fit: contain; border: 1px solid #e2e8f0; padding: 8px; border-radius: 8px;">
                 </div>
                 <div class="sidebar-title">
-                    <h1>MDPH-KJ01</h1>
-                    <p>Permit Papan Dendeng</p>
+                    <h1>Majils Daerah Pengkalan Hulu</h1>
+                    <p>Permit Papan Dendeng/Hoarding</p>
                 </div>
             </div>
         </div>
@@ -1335,11 +1335,11 @@
 
                     <h4 style="font-weight: 700; margin: 1.5rem 0 0.8rem; text-transform: uppercase;">4. BANGUNAN-BANGUNAN SEMENTARA YANG AKAN DIBINA:-</h4>
 
-                    <table class="technical-table" style="border: 2px solid var(--gray-900);">
+                    <!-- Hoarding Only Table -->
+                    <table class="technical-table" style="border: 2px solid var(--gray-900); margin-bottom: 2rem;">
                         <thead>
                             <tr>
                                 <th style="border: 2px solid var(--gray-900); background: var(--gray-100); text-align: left; text-transform: uppercase; padding: 1rem;">JENIS</th>
-                                <th style="border: 2px solid var(--gray-900); background: var(--gray-100); text-align: left; text-transform: uppercase; padding: 1rem;">JUMLAH</th>
                                 <th style="border: 2px solid var(--gray-900); background: var(--gray-100); text-align: left; text-transform: uppercase; padding: 1rem;">LUAS</th>
                                 <th style="border: 2px solid var(--gray-900); background: var(--gray-100); text-align: left; text-transform: uppercase; padding: 1rem;">BAHAN</th>
                             </tr>
@@ -1348,9 +1348,6 @@
                             <tr>
                                 <td style="border: 2px solid var(--gray-900); padding: 1.5rem; vertical-align: middle;">
                                     <strong>a) Papan hoarding</strong>
-                                </td>
-                                <td style="border: 2px solid var(--gray-900); padding: 1.5rem; text-align: center; vertical-align: middle;">
-                                    <input type="number" id="hoarding-jumlah" value="" placeholder="" step="1" min="0" style="width: 100%; max-width: 200px; border: 1px solid var(--gray-300); padding: 0.75rem; text-align: center; background: white; border-radius: 4px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;">
                                 </td>
                                 <td style="border: 2px solid var(--gray-900); padding: 1.5rem; vertical-align: middle;">
                                     <div style="display: flex; align-items: center; gap: 0.5rem; justify-content: center;">
@@ -1362,6 +1359,20 @@
                                     <input type="text" id="hoarding-bahan" placeholder="" style="width: 100%; border: 1px solid var(--gray-300); padding: 0.75rem; background: white; border-radius: 4px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;">
                                 </td>
                             </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Papan Tanda & Lain-lain Table -->
+                    <table class="technical-table" style="border: 2px solid var(--gray-900);">
+                        <thead>
+                            <tr>
+                                <th style="border: 2px solid var(--gray-900); background: var(--gray-100); text-align: left; text-transform: uppercase; padding: 1rem;">JENIS</th>
+                                <th style="border: 2px solid var(--gray-900); background: var(--gray-100); text-align: left; text-transform: uppercase; padding: 1rem;">JUMLAH</th>
+                                <th style="border: 2px solid var(--gray-900); background: var(--gray-100); text-align: left; text-transform: uppercase; padding: 1rem;">LUAS</th>
+                                <th style="border: 2px solid var(--gray-900); background: var(--gray-100); text-align: left; text-transform: uppercase; padding: 1rem;">BAHAN</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             <tr>
                                 <td style="border: 2px solid var(--gray-900); padding: 1.5rem; vertical-align: middle;">
                                     <strong>b) Papan Tanda</strong>
@@ -1435,9 +1446,12 @@
                             <tr>
                                 <td style="font-weight: 600;">Papan Hoarding</td>
                                 <td>
-                                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
                                         <input type="number" id="hoarding-panjang" value="0" oninput="calculateTotal()" style="width: 80px; border: 1px solid var(--gray-300); padding: 0.5rem; text-align: center; background: white; border-radius: 4px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;">
-                                        <span>meter × RM 6.00</span>
+                                        <span>meter ×</span>
+                                        <span>RM 6.00 ×</span>
+                                        <input type="number" id="hoarding-bulan" value="1" min="1" oninput="calculateTotal()" style="width: 80px; border: 1px solid var(--gray-300); padding: 0.5rem; text-align: center; background: white; border-radius: 4px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;">
+                                        <span>bulan</span>
                                     </div>
                                 </td>
                                 <td style="text-align: right; font-weight: 600;"><span id="hoarding-permit-total">0.00</span></td>
@@ -1479,6 +1493,7 @@
                     </div>
                 </div>
             </div>
+			
 
             <!-- Tab 4: Maklumat -->
             <div id="tab-maklumat" class="tab-content">
@@ -1515,7 +1530,7 @@
                                 <input 
                                     type="text" 
                                     id="maklumat-fail" 
-                                    placeholder="Cth: MDPH/KJ/123/2024" 
+                                     
                                     style="border: none; border-bottom: 2px solid var(--gray-900); border-radius: 0; padding: 0.5rem 0; margin-top: 1rem; background: transparent; width: 100%; font-weight: 400; color: var(--gray-900); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;">
                             </div>
                         </div>
@@ -1542,7 +1557,7 @@
                                     placeholder="Nama wakil kontraktor..." 
                                     style="border: none; border-bottom: 2px solid var(--gray-900); border-radius: 0; padding: 0.5rem 0; margin-top: 1rem; background: transparent; width: 100%; font-weight: 400; color: var(--gray-900); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;">
                             </div>
-                        </div>
+                        </div>				 
                     </div>
 
                     <div style="margin-top: 1rem; text-align: right;">
@@ -1567,8 +1582,6 @@
                     </div>
                 </div>
             </div>
-
-
 
 
 <!-- Tab 5: Spesifikasi Papan -->
@@ -1660,7 +1673,7 @@
                         <div class="payment-item">
                             <div>
                                 <div class="payment-item-title">Permit Papan Hoarding</div>
-                                <div class="payment-item-subtitle">(<span id="summary-hoarding-meter">0</span> m × RM 6.00)</div>
+                                <div class="payment-item-subtitle">(<span id="summary-hoarding-meter">0</span> m × RM 6.00 × <span id="summary-hoarding-bulan">1</span> bulan)</div>
                             </div>
                             <div class="payment-item-amount">RM <span id="summary-hoarding-total">0.00</span></div>
                         </div>
@@ -1685,6 +1698,8 @@
                         <h3 style="font-weight: 700; text-align: center; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.05em;">PILIH KAEDAH PEMBAYARAN</h3>
                         
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+						
+						
                             <!-- Atas Talian Option -->
                             <div class="payment-method-card" onclick="selectPaymentMethod('online')" id="payment-online" style="border: 2px solid var(--gray-300); border-radius: 12px; padding: 1.5rem; cursor: pointer; transition: all 0.2s; background: white;">
                                 <div style="display: flex; align-items: center; gap: 1rem;">
@@ -1701,6 +1716,7 @@
                                     </div>
                                 </div>
                             </div>
+							
 
                             <!-- Di Kaunter Option -->
                             <div class="payment-method-card" onclick="selectPaymentMethod('counter')" id="payment-counter" style="border: 2px solid var(--gray-300); border-radius: 12px; padding: 1.5rem; cursor: pointer; transition: all 0.2s; background: white;">
@@ -1775,10 +1791,11 @@
                             Nota Penting:
                         </h5>
                         <ul>
-                            <li>Pembayaran boleh dibuat secara tunai atau debit di kaunter Jabatan Bangunan.</li>
+                            <li>Pembayaran boleh dibuat secara tunai atau debit di kaunter utama MDPH.</li>
                             <li>Sila bawa salinan cetak borang ini semasa membuat pembayaran.</li>
                             <li>Permit hanya akan dikeluarkan selepas bayaran dijelaskan sepenuhnya.</li>
                             <li>Permohonan akan diproses dalam tempoh 7 hingga 14 hari.</li>
+							<li>Pembayaran hendaklah dibuat dalam tempoh lima (5) hari selepas status kelulusan dikeluarkan. Kegagalan untuk menjelaskan bayaran dalam tempoh yang ditetapkan akan menyebabkan status kelulusan tersebut dibatalkan serta-merta.</li>
                         </ul>
                     </div>
 
@@ -1885,10 +1902,12 @@
 
         function calculateTotal() {
             const hoardingPanjang = parseFloat(document.getElementById('hoarding-panjang').value) || 0;
+            const hoardingBulan = parseFloat(document.getElementById('hoarding-bulan').value) || 1;
             const papantandaLuas = parseFloat(document.getElementById('papantanda-luas-permit').value) || 0;
             
+            // New formula: meter × RM 6 × bulan
             const hoardingRate = 6.00;
-            const hoardingTotal = hoardingPanjang * hoardingRate;
+            const hoardingTotal = hoardingPanjang * hoardingRate * hoardingBulan;
             
             let papantandaTotal = 0.00;
             if (papantandaLuas > 0) {
@@ -1908,6 +1927,7 @@
             document.getElementById('permit-total-keseluruhan').textContent = totalKeseluruhan.toFixed(2);
             
             document.getElementById('summary-hoarding-meter').textContent = hoardingPanjang.toFixed(2);
+            document.getElementById('summary-hoarding-bulan').textContent = hoardingBulan;
             document.getElementById('summary-hoarding-total').textContent = hoardingTotal.toFixed(2);
             document.getElementById('summary-papantanda-meter').textContent = papantandaLuas.toFixed(2);
             document.getElementById('summary-papantanda-total').textContent = papantandaTotal.toFixed(2);
@@ -1951,7 +1971,7 @@
                 }
             });
             
-            const calculationFields = ['hoarding-panjang', 'papantanda-luas-permit'];
+            const calculationFields = ['hoarding-panjang', 'hoarding-bulan', 'papantanda-luas-permit'];
             calculationFields.forEach(fieldId => {
                 const field = document.getElementById(fieldId);
                 if (field) {
